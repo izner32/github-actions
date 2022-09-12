@@ -1,0 +1,23 @@
+name: Master
+on: 
+  push:
+    branches: 
+    - 'master'
+jobs: 
+  image-deploy-staging:
+    name: Build Image, Upload Image, Deploy to Staging Environment
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
+
+    - name: Vulnerability Scan on Image
+
+    - name: Build Image w/ Kaniko
+    
+    - name: Upload Image to DockerHub
+    
+    - name: Vulnerability Scan on Staging Environment 
+
+    - name: Deploy to Staging Environment
+
