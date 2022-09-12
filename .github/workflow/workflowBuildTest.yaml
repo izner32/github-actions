@@ -31,8 +31,8 @@ jobs:
           cache: npm
         - run: npm ci # install all exact version dependencies or devDependencies from a package-lock 
       
-      - name: Run Unit Tests
+      - name: Run Unit Tests w/ Jest 
         run: npm test # execute the test script
 
-      - name: TODO - Run Mutation Tests
-        run: echo "run mutation test"
+      - name: Run Mutation Tests w/ Stryker 
+        run: npm run mutate 

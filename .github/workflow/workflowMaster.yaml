@@ -4,8 +4,8 @@ on:
     branches: 
     - 'master'
 jobs: 
-  image-deploy-staging:
-    name: Build Image, Upload Image, Deploy to Staging Environment
+  image-vulnerability-scan:
+    name: Image Vulnerability Scan w/
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
@@ -13,11 +13,40 @@ jobs:
 
     - name: Vulnerability Scan on Image
 
-    - name: Build Image w/ Kaniko
-    
-    - name: Upload Image to DockerHub
-    
-    - name: Vulnerability Scan on Staging Environment 
+  build-upload-image:
+    name: Build and Upload Image to ECR
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v3
 
-    - name: Deploy to Staging Environment
+    - name: Configure AWS credentials
+      uses: aws-actions/configure-aws-credentials@v1
+      with:
+        aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+        aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+        aws-region: ap-south-1
+
+    - name: Login to Amazon ECR
+      id: login-ecr
+      uses: aws-actions/amazon-ecr-login@v1
+
+    - name: Build, tag, and push image to Amazon ECR
+      env:
+        ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+        ECR_REPOSITORY: docker_nodejs_demo
+        IMAGE_TAG: nodejs_demo_image
+      run: |
+        docker build -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG .
+        docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+    
+  dev-cluster-vulnerability-scan:
+    name: K8s Dev Cluster Vulnerability Scan w/ 
+    runs-on: ubuntu-latest
+    steps:
+
+  deploy-staging: 
+    name: Deploy to Dev Environment
+    runs-on: ubuntu-latest
+    steps:
 
