@@ -6,8 +6,8 @@ on:
     - '!master'
     - '!release'
 jobs: 
-  unit-test:
-      name: Execute Unit Test
+  tests:
+      name: Execute Tests
       runs-on: ubuntu-latest
       steps:
       - name: Checkout # basically clones your code from git repo to the runner/machine where this job run 
@@ -23,9 +23,5 @@ jobs:
       - name: Run Unit Tests
         run: npm test # execute the test script
 
-  mutation-test:
-    name: Execute Mutation Test
-    runs-on: ubuntu-latest
-    steps:
-    - name: TODO - Run Mutation Tests
-      run: echo "run mutation test"
+      - name: TODO - Run Mutation Tests
+        run: echo "run mutation test"

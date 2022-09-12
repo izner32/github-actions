@@ -1,0 +1,29 @@
+name: Build Test
+on: 
+  pull:
+    branches: 
+    - 'master'
+jobs: 
+  code-analysis-sast:
+      name: Execute Static Code Analysis - SAST
+      runs-on: ubuntu-latest
+      steps:
+      - name: Checkout # basically clones your code from git repo to the runner/machine where this job run 
+        uses: actions/checkout@v3
+
+      - name: Node Setup - Install all dependencies
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: npm
+        - run: npm ci # install all exact version dependencies or devDependencies from a package-lock 
+      
+      - name: Run Unit Tests
+        run: npm test # execute the test script
+
+  dependency-scan-sca:
+    name: Execute Dependency Scan - SCA
+    runs-on: ubuntu-latest
+    steps:
+    - name: TODO - Run Mutation Tests
+      run: echo "run mutation test"
