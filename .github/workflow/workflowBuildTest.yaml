@@ -13,7 +13,7 @@ jobs:
       - name: Checkout # basically clones your code from git repo to the runner/machine where this job run 
         uses: actions/checkout@v3
 
-      - name: Node Setup - Install all dependencies
+      - name: Node Setup - Install All Dependencies
         uses: actions/setup-node@v3
         with:
           node-version: 16
