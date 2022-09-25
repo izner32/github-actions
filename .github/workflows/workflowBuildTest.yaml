@@ -29,10 +29,10 @@ jobs:
         with:
           node-version: 16
           cache: npm
-        - run: npm ci # install all exact version dependencies or devDependencies from a package-lock 
+          run: npm ci # install all exact version dependencies or devDependencies from a package-lock 
       
       - name: Run Unit Tests w/ Jest 
-        run: npm test # execute the test script
+        run: npm test 
 
       - name: Run Mutation Tests w/ Stryker 
         run: npm run mutate 
