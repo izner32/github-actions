@@ -33,7 +33,7 @@ jobs:
           -Dsonar.projectKey=devsecopsganodejsprojectkey
 
   dependency-scan-sca:
-    name: Dependency Scan - SCA
+    name: Execute Dependency Scan - SCA
     runs-on: ubuntu-latest
     steps:
     - name: Checkout
